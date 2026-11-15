@@ -1,0 +1,25 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: вход в каталог «/home/cdcat/docs/study/RISC-V/verification/experiments/cocotb»
+/home/cdcat/docs/study/RISC-V/verification/tools/venv/lib/python3.12/site-packages/cocotb_tools/makefiles/simulators/Makefile.icarus:66: Using MODULE is deprecated, please use COCOTB_TEST_MODULES instead.
+rm -f results.xml
+COCOTB_TEST_MODULES=tb_adder COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=adder TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/cdcat/docs/study/RISC-V/verification/tools/venv/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/cdcat/docs/study/RISC-V/verification/tools/venv/bin/python3
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1780066997
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/cdcat/docs/study/RISC-V/verification/tools/venv/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running tb_adder.test_adder_constrained_random (1/1)
+   100.00ns INFO     cocotb.adder                       All 100 constrained-random tests passed!
+   100.00ns INFO     cocotb.regression                  tb_adder.test_adder_constrained_random passed
+   100.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** tb_adder.test_adder_constrained_random   PASS         100.00           0.00      24209.55  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                          100.00           0.00      20159.11  **
+                                                        ************************************************************************************************
+make[1]: выход из каталога «/home/cdcat/docs/study/RISC-V/verification/experiments/cocotb»

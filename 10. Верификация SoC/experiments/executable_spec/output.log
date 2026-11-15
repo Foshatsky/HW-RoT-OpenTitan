@@ -1,0 +1,30 @@
+tiny_cpu.cpp: In member function ‘void TinyCPU::tick()’:
+tiny_cpu.cpp:43:24: error: ‘setw’ was not declared in this scope; did you mean ‘std::setw’?
+   43 |         cout << "[" << setw(3) << cycle_count << "] PC=" << setw(3) << pc
+      |                        ^~~~
+      |                        std::setw
+In file included from tiny_cpu.cpp:6:
+/usr/include/c++/13/iomanip:227:3: note: ‘std::setw’ declared here
+  227 |   setw(int __n)
+      |   ^~~~
+tiny_cpu.cpp: In function ‘int sc_main(int, char**)’:
+tiny_cpu.cpp:150:5: error: ‘vector’ was not declared in this scope
+  150 |     vector<uint32_t> prog = {
+      |     ^~~~~~
+tiny_cpu.cpp:150:5: note: suggested alternatives:
+In file included from /usr/include/c++/13/vector:66,
+                 from ../../tools/systemc/install/include/systemc.h:58,
+                 from tiny_cpu.cpp:5:
+/usr/include/c++/13/bits/stl_vector.h:428:11: note:   ‘std::vector’
+  428 |     class vector : protected _Vector_base<_Tp, _Alloc>
+      |           ^~~~~~
+/usr/include/c++/13/vector:86:13: note:   ‘std::pmr::vector’
+   86 |       using vector = std::vector<_Tp, polymorphic_allocator<_Tp>>;
+      |             ^~~~~~
+tiny_cpu.cpp:150:20: error: expected primary-expression before ‘>’ token
+  150 |     vector<uint32_t> prog = {
+      |                    ^
+tiny_cpu.cpp:150:22: error: ‘prog’ was not declared in this scope
+  150 |     vector<uint32_t> prog = {
+      |                      ^~~~
+run.sh: строка 4: ./tiny_cpu: Нет такого файла или каталога

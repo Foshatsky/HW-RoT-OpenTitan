@@ -1,0 +1,163 @@
+root@black:~/opentitan_project/opentitan# ./bazelisk.sh build //sw/device/tests/tpm:tpm_minimal_test_sim_verilator --jobs=16 --define verilator_threads=8
+INFO: Analyzed target //sw/device/tests/tpm:tpm_minimal_test_sim_verilator (1 packages loaded, 5 targets configured).
+INFO: Found 1 target...
+Target //sw/device/tests/tpm:tpm_minimal_test_sim_verilator up-to-date:
+  bazel-bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash
+INFO: Elapsed time: 1.259s, Critical Path: 0.77s
+INFO: 10 processes: 4 action cache hit, 2 internal, 8 linux-sandbox.
+INFO: Build completed successfully, 10 total actions
+root@black:~/opentitan_project/opentitan# ./bazelisk.sh run //sw/device/tests/tpm:tpm_minimal_test_sim_verilator --define verilator_threads=8
+INFO: Analyzed target //sw/device/tests/tpm:tpm_minimal_test_sim_verilator (0 packages loaded, 0 targets configured).
+INFO: Found 1 target...
+Target //sw/device/tests/tpm:tpm_minimal_test_sim_verilator up-to-date:
+  bazel-bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash
+INFO: Elapsed time: 0.359s, Critical Path: 0.11s
+INFO: 1 process: 1 internal.
+INFO: Build completed successfully, 1 total action
+INFO: Running command line: external/bazel_tools/tools/test/test-setup.sh sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash
+exec ${PAGER:-/usr/bin/less} "$0" || exit 1
+Executing tests from //sw/device/tests/tpm:tpm_minimal_test_sim_verilator
+-----------------------------------------------------------------------------
+Invoking test: sw/host/opentitantool/opentitantool --rcfile= --logging=info --interface=verilator --verilator-bin=hw/build.verilator_real/lowrisc_dv_top_earlgrey_chip_verilator_sim_0.1/sim-verilator/Vchip_sim_tb --verilator-rom=sw/device/lib/testing/test_rom/test_rom_sim_verilator.39.scr.vmem --verilator-otp=hw/top_earlgrey/data/otp/img_rma.24.vmem --verilator-flash=sw/device/tests/tpm/tpm_minimal_test_sim_verilator.64.vmem --exec=console --non-interactive --exit-success='PASS.*\n' --exit-failure='((FAIL|FAULT).*\n)|(BFV:[0-9a-f]{8})' no-op
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess] CWD: Ok("/root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main")
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess] Spawning verilator: "hw/build.verilator_real/lowrisc_dv_top_earlgrey_chip_verilator_sim_0.1/sim-verilator/Vchip_sim_tb" "--meminit=rom0,sw/device/lib/testing/test_rom/test_rom_sim_verilator.39.scr.vmem --meminit=flash0,sw/device/tests/tpm/tpm_minimal_test_sim_verilator.64.vmem --meminit=otp,hw/top_earlgrey/data/otp/img_rma.24.vmem"
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] Simulation of OpenTitan Earl Grey
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] =================================
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+GPIO: Reusing existing FIFO at /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-read
+GPIO: Reusing existing FIFO at /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-write
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] Tracing can be toggled by sending SIGUSR1 to this process:
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ kill -USR1 156780
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] TOP.chip_sim_tb.u_dut.top_earlgrey.u_flash_ctrl.u_eflash.u_flash.gen_prim_flash_banks[0].u_prim_flash_bank.unnamedblk1: ReadLatency:1 ProgLatency:50 EraseLatency:200
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] TOP.chip_sim_tb.u_dut.top_earlgrey.u_flash_ctrl.u_eflash.u_flash.gen_prim_flash_banks[1].u_prim_flash_bank.unnamedblk1: ReadLatency:1 ProgLatency:50 EraseLatency:200
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout]                    0GPIO: creating gpiodpi
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] GPIO: FIFO pipes created at /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-read (read) and /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-write (write) for 32-bit wide GPIO.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] GPIO: To measure the values of the pins as driven by the device, run
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ cat /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-read  # '0' low, '1' high, 'X' floating
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] GPIO: To drive the pins, run a command like
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ echo 'h09 l31' > /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-write  # Pull the pin 9 high, and pin 31 low.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ echo 'wh10' > /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-write  # Pull pin 10 high through a weak pull-up.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] SPI: Created /dev/pts/2 for spi0. Connect to it with any terminal program, e.g.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ screen /dev/pts/2
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] NOTE: a SPI transaction is run for every 4 characters entered.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] SPI: Monitor output file created at /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/spi0.log. Works well with tail:
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ tail -f /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/spi0.log
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] USBDPI: Monitor output file created at /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/usb0.log. Works well with tail:
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ tail -f /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/usb0.log
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] No UARTDPI_LOG_uart0 plusarg found.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] UART: Created /dev/pts/3 for uart0. Connect to it with any terminal program, e.g.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] $ screen /dev/pts/3
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] UART: Additionally writing all UART output to 'uart0.log'.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] JTAG: Virtual JTAG interface dmi0 is listening on port 44853. Use
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] OpenOCD and the following configuration to connect:
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout]   interface remote_bitbang
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout]   remote_bitbang_host localhost
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout]   remote_bitbang_port 44853
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] Simulation running, end by pressing CTRL-c.
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::subprocess::stdout] 
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::transport] Verilator started with the following interfaces:
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::transport] gpio_read = /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-read
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::transport] gpio_write = /root/.cache/bazel/_bazel_root/4c2e27dc2ae11ea46b3f9e7766fbf3b3/execroot/_main/bazel-out/k8-fastbuild-ST-1df456420242/bin/sw/device/tests/tpm/tpm_minimal_test_sim_verilator.bash.runfiles/_main/gpio0-write
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::transport] uart = /dev/pts/3
+[2026-06-12T23:43:45Z INFO  ot_transport_verilator::transport] spi = /dev/pts/2
+[2026-06-12T23:43:45Z WARN  opentitanlib::app] Could not read UART parity to check it is None
+[2026-06-12T23:43:45Z INFO  opentitanlib::io::uart] set_flow_control to false
+?I00001 test_rom.c:190] kBuildInfo: scm_revision=54697461
+I00002 test_rom.c:267] Test ROM complete, jumping to flash (addr: 20000480)!
+I00001 ottf_main.c:175] Running sw/device/tests/tpm/tpm_minimal_test.c
+I00002 ottf_main.c:182] Enabling OTTF alert catcher
+I00003 tpm_minimal_test.c:91] Starting TPM test with PCR commands
+I00004 tpm_minimal_test.c:15] TPM task started
+I00005 tpm_driver.c:44] TPM send, len=12
+I00006 tpm_driver.c:52]   tag=0x8001, size=12, code=0x00000144
+I00007 tpm_driver.c:61] TPM recv (build response)
+I00008 tpm_driver.c:76] TPM2_Startup accepted, TPM started
+I00009 tpm_driver.c:158] Response length = 14, rc=0x00000000
+I00010 tpm_minimal_test.c:26] Startup done
+I00011 tpm_driver.c:44] TPM send, len=14
+I00012 tpm_driver.c:52]   tag=0x8001, size=16, code=0x0000017B
+I00013 tpm_driver.c:61] TPM recv (build response)
+I00014 tpm_driver.c:88] GetRandom: requesting 16 bytes
+I00015 tpm_driver.c:99] GetRandom: generated 16 bytes using Native RISC-V mcycle Entropy
+I00016 tpm_driver.c:158] Response length = 30, rc=0x00000000
+I00017 tpm_minimal_test.c:37] Random 16 bytes from OpenTitan HW Source:
+I00018 tpm_minimal_test.c:39]   [00] 0x0D
+I00019 tpm_minimal_test.c:39]   [01] 0xFB
+I00020 tpm_minimal_test.c:39]   [02] 0x0C
+I00021 tpm_minimal_test.c:39]   [03] 0x00
+I00022 tpm_minimal_test.c:39]   [04] 0x3F
+I00023 tpm_minimal_test.c:39]   [05] 0xFB
+I00024 tpm_minimal_test.c:39]   [06] 0x0C
+I00025 tpm_minimal_test.c:39]   [07] 0x00
+I00026 tpm_minimal_test.c:39]   [08] 0x6F
+I00027 tpm_minimal_test.c:39]   [09] 0xFB
+I00028 tpm_minimal_test.c:39]   [10] 0x0C
+I00029 tpm_minimal_test.c:39]   [11] 0x00
+I00030 tpm_minimal_test.c:39]   [12] 0x9F
+I00031 tpm_minimal_test.c:39]   [13] 0xFB
+I00032 tpm_minimal_test.c:39]   [14] 0x0C
+I00033 tpm_minimal_test.c:39]   [15] 0x00
+I00034 tpm_driver.c:44] TPM send, len=18
+I00035 tpm_driver.c:52]   tag=0x8001, size=18, code=0x0000017E
+I00036 tpm_driver.c:61] TPM recv (build response)
+I00037 tpm_driver.c:141] PCR[0] read successfully
+I00038 tpm_driver.c:158] Response length = 46, rc=0x00000000
+I00039 tpm_minimal_test.c:55] PCR[0] before extend (should be zeros):
+I00040 tpm_minimal_test.c:57]   [00] 0x00
+I00041 tpm_minimal_test.c:57]   [01] 0x00
+I00042 tpm_minimal_test.c:57]   [02] 0x00
+I00043 tpm_minimal_test.c:57]   [03] 0x00
+I00044 tpm_minimal_test.c:57]   [04] 0x00
+I00045 tpm_minimal_test.c:57]   [05] 0x00
+I00046 tpm_minimal_test.c:57]   [06] 0x00
+I00047 tpm_minimal_test.c:57]   [07] 0x00
+I00048 tpm_minimal_test.c:57]   [08] 0x00
+I00049 tpm_minimal_test.c:57]   [09] 0x00
+I00050 tpm_minimal_test.c:57]   [10] 0x00
+I00051 tpm_minimal_test.c:57]   [11] 0x00
+I00052 tpm_minimal_test.c:57]   [12] 0x00
+I00053 tpm_minimal_test.c:57]   [13] 0x00
+I00054 tpm_minimal_test.c:57]   [14] 0x00
+I00055 tpm_minimal_test.c:57]   [15] 0x00
+I00056 tpm_driver.c:44] TPM send, len=46
+I00057 tpm_driver.c:52]   tag=0x8001, size=46, code=0x0000016A
+I00058 tpm_driver.c:61] TPM recv (build response)
+I00059 tpm_driver.c:121] PCR[0] extended (XOR)
+I00060 tpm_driver.c:158] Response length = 14, rc=0x00000000
+I00061 tpm_minimal_test.c:73] PCR_Extend done
+I00062 tpm_driver.c:44] TPM send, len=18
+I00063 tpm_driver.c:52]   tag=0x8001, size=18, code=0x0000017E
+I00064 tpm_driver.c:61] TPM recv (build response)
+I00065 tpm_driver.c:141] PCR[0] read successfully
+I00066 tpm_driver.c:158] Response length = 46, rc=0x00000000
+I00067 tpm_minimal_test.c:79] PCR[0] after extend (should be 0xAA pattern):
+I00068 tpm_minimal_test.c:81]   [00] 0xAA
+I00069 tpm_minimal_test.c:81]   [01] 0xAA
+I00070 tpm_minimal_test.c:81]   [02] 0xAA
+I00071 tpm_minimal_test.c:81]   [03] 0xAA
+I00072 tpm_minimal_test.c:81]   [04] 0xAA
+I00073 tpm_minimal_test.c:81]   [05] 0xAA
+I00074 tpm_minimal_test.c:81]   [06] 0xAA
+I00075 tpm_minimal_test.c:81]   [07] 0xAA
+I00076 tpm_minimal_test.c:81]   [08] 0xAA
+I00077 tpm_minimal_test.c:81]   [09] 0xAA
+I00078 tpm_minimal_test.c:81]   [10] 0xAA
+I00079 tpm_minimal_test.c:81]   [11] 0xAA
+I00080 tpm_minimal_test.c:81]   [12] 0xAA
+I00081 tpm_minimal_test.c:81]   [13] 0xAA
+I00082 tpm_minimal_test.c:81]   [14] 0xAA
+I00083 tpm_minimal_test.c:81]   [15] 0xAA
+I00084 tpm_minimal_test.c:85] TPM task finished
+I00085 tpm_minimal_test.c:98] All tests passed
+I00086 ottf_main.c:114] Finished sw/device/tests/tpm/tpm_minimal_test.c
+[2026-06-12T23:58:01Z INFO  opentitantool::command::console] ExitSuccess("PASS!\r\n")
+[2026-06-12T23:58:01Z INFO  opentitantool] Command result: success.
+[2026-06-12T23:58:01Z INFO  opentitantool] Command result: success.

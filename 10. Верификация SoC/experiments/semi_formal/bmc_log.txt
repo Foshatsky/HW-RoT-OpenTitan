@@ -1,0 +1,18 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.50 (git sha1 b5170e139, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+
+-- Running command `
+    read_verilog -formal ../../experiments/semi_formal/bmc_fsm.v
+    prep -top bmc_fsm
+    sat -prove-asserts -seq 10
+' --
+
+1. Executing Verilog-2005 frontend: ../../experiments/semi_formal/bmc_fsm.v
+Parsing formal Verilog input from `../../experiments/semi_formal/bmc_fsm.v' to AST representation.
+Generating RTLIL representation for module `\bmc_fsm'.
+../../experiments/semi_formal/bmc_fsm.v:68: ERROR: Can't resolve task name `$error'.

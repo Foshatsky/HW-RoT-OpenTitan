@@ -1,0 +1,67 @@
+==================================================
+ПОЛУФОРМАЛЬНАЯ ВЕРИФИКАЦИЯ
+Bounded Model Checking (BMC) vs полная индукция
+==================================================
+
+---
+Модуль: bmc_fsm (5-состояний FSM с запрещённым состоянием 5-7)
+Свойство 1: state всегда <= 4 (ERROR)
+Свойство 2: если done=1, то state=DONE
+---
+
+=== 1. BMC: проверка свойств на глубине k=5 ===
+    Полуформальная: верно для k <= 5,
+    НЕ гарантирует для всех k
+
+6. Executing SAT pass (solving SAT problems in the circuit).
+Setting up time step 1:
+Imported 43 cells to SAT database.
+Setting up time step 2:
+Imported 43 cells to SAT database.
+Setting up time step 3:
+Imported 43 cells to SAT database.
+Setting up time step 4:
+Imported 43 cells to SAT database.
+Setting up time step 5:
+Imported 43 cells to SAT database.
+Solving problem with 2153 variables and 5868 clauses..
+SAT proof finished - model found: FAIL!
+
+
+=== 2. Формальная: индукция (k=2, с verify) ===
+    Доказывает свойство для ВСЕХ k
+    Требует更强 invariants для сложных FSM
+
+6. Executing SAT pass (solving SAT problems in the circuit).
+Setting up time step 1:
+Imported 43 cells to SAT database.
+Setting up time step 2:
+Imported 43 cells to SAT database.
+Setting up time step 1:
+Imported 43 cells to SAT database.
+** Trying induction with length 1 **
+Setting up time step 3:
+Imported 43 cells to SAT database.
+[base case 1] Solving problem with 1269 variables and 3446 clauses..
+
+==================================================
+АНАЛИЗ РАЗЛИЧИЙ
+==================================================
+
+BMC (полуформальная):
+  - Проверяет свойства на k тактов вперёд
+  - Если найдёт баг — выдаёт контрпример
+  - Если не найдёт — свойство может быть
+    нарушено на глубине > k
+  - Быстрее, масштабируется на большие схемы
+
+Индукция (формальная):
+  - Доказывает свойство для ВСЕХ состояний
+  - Требует более сильных инвариантов
+  - Может не сойтись на сложных FSM
+  - Полная гарантия корректности
+
+Практика: сначала BMC (k=50-100) для поиска
+багов, затем индукция для полного доказательства.
+Это и есть полуформальный подход.
+==================================================

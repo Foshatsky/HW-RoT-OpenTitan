@@ -1,0 +1,184 @@
+========================================================================
+  RISC-V TRACE DEBUGGING ANALYSIS REPORT
+========================================================================
+Trace length: 100 instructions
+Trace format: cycle, pc, instruction, rd, rs1, rs2, mem_addr
+
+--- FIRST 10 TRACE ENTRIES ---
+cycle pc       instruction              rd   rs1  rs2  mem_addr  
+-----------------------------------------------------------------
+    0 0x0000   bne x7,x0,target         x0   x7   x0   0x000b    
+    1 0x0004   blt x17,x0,target        x0   x17  x0   0x002b    
+    2 0x0008   xori x8,x6,11            x8   x6   x0   -         
+    3 0x000c   beq x27,x0,target        x0   x27  x0   0x0018    
+    4 0x0010   add x5,x13,x14           x5   x13  x14  -         
+    5 0x0014   sw x0,53(x12)            x0   x12  x0   0x0049    
+    6 0x0018   xori x28,x17,0           x28  x17  x0   -         
+    7 0x001c   bge x10,x0,target        x0   x10  x0   0x005a    
+    8 0x0020   andi x17,x9,27           x17  x9   x0   -         
+    9 0x0024   bge x21,x0,target        x0   x21  x0   0x0039    
+
+--- PIPELINE HAZARDS ---
+
+RAW hazards (count: 8):
+  Cycle  Inst                     Reg  Dist  Prev Inst                Prev Cycle
+  ---------------------------------------------------------------------------
+  15     add x14,x18,x5           x5   2     slli x5,x18,46           13    
+  47     add x14,x14,x0           x14  1     xori x14,x4,43           46    
+  56     add x25,x21,x6           x6   3     xori x6,x6,55            53    
+  65     ori x13,x3,7             x3   3     slli x3,x10,48           62    
+  77     addi x22,x4,31           x4   3     andi x4,x0,58            74    
+  84     bne x16,x0,target        x16  3     addi x16,x7,13           81    
+  89     sub x4,x9,x2             x2   3     ori x2,x0,42             86    
+  92     bge x2,x0,target         x2   1     addi x2,x19,46           91    
+
+WAW hazards (count: 4):
+  Cycle  Inst                     Reg  Dist  Prev Inst                Prev Cycle
+  ---------------------------------------------------------------------------
+  24     xori x20,x13,63          x20  1     add x20,x25,x17          23    
+  47     add x14,x14,x0           x14  1     xori x14,x4,43           46    
+  64     slli x31,x9,24           x31  3     slli x31,x30,27          61    
+  97     ori x10,x6,48            x10  2     xori x10,x11,52          95    
+
+WAR hazards (count: 5):
+  Cycle  Inst                     Reg  Dist  Prev Inst                Prev Cycle
+  ---------------------------------------------------------------------------
+  8      andi x17,x9,27           x17  2     xori x28,x17,0           6     
+  37     andi x10,x0,41           x10  3     sub x18,x27,x10          34    
+  72     xori x20,x15,33          x20  1     bne x20,x0,target        71    
+  91     addi x2,x19,46           x2   2     sub x4,x9,x2             89    
+  96     add x11,x21,x26          x11  1     xori x10,x11,52          95    
+
+--- BRANCH MISPREDICTIONS ---
+Count: 8
+  Cycle  Inst                     Taken 
+  ----------------------------------------
+  0      bne x7,x0,target         True  
+  7      bge x10,x0,target        False 
+  19     beq x10,x0,target        False 
+  29     bge x3,x0,target         False 
+  48     blt x3,x0,target         True  
+  ... and 3 more
+
+--- CACHE MISSES ---
+Count: 1 (simulated miss rate: 20%)
+  Cycle  Inst                     Addr       Type   Penalty 
+  ------------------------------------------------------
+  45     sw x0,15(x28)            0x00c3     store  28      
+
+--- PERFORMANCE METRICS ---
+  Total instructions:       100
+  Total clock cycles:       163
+  Hazard stall cycles:      11
+  Mispredict penalty:       24
+  Cache miss penalty:       28
+  CPI (Cycles / Instruction): 1.63
+  IPC (Instructions / Cycle): 0.613
+
+--- SUMMARY ---
+  WARNING: CPI > 1.5 indicates significant pipeline stalls.
+========================================================================
+
+=== FULL TRACE CSV ===
+
+cycle,pc,instruction,rd,rs1,rs2,mem_addr
+0,0x0000,"bne x7,x0,target",x0,x7,x0,0x000b
+1,0x0004,"blt x17,x0,target",x0,x17,x0,0x002b
+2,0x0008,"xori x8,x6,11",x8,x6,x0,-
+3,0x000c,"beq x27,x0,target",x0,x27,x0,0x0018
+4,0x0010,"add x5,x13,x14",x5,x13,x14,-
+5,0x0014,"sw x0,53(x12)",x0,x12,x0,0x0049
+6,0x0018,"xori x28,x17,0",x28,x17,x0,-
+7,0x001c,"bge x10,x0,target",x0,x10,x0,0x005a
+8,0x0020,"andi x17,x9,27",x17,x9,x0,-
+9,0x0024,"bge x21,x0,target",x0,x21,x0,0x0039
+10,0x0028,"sub x24,x6,x22",x24,x6,x22,-
+11,0x002c,"beq x16,x0,target",x0,x16,x0,0x0039
+12,0x0030,"blt x29,x0,target",x0,x29,x0,0x0047
+13,0x0034,"slli x5,x18,46",x5,x18,x0,-
+14,0x0038,"beq x12,x0,target",x0,x12,x0,0x0048
+15,0x003c,"add x14,x18,x5",x14,x18,x5,-
+16,0x0040,"sub x24,x17,x29",x24,x17,x29,-
+17,0x0044,"addi x23,x22,26",x23,x22,x0,-
+18,0x0048,"bne x17,x0,target",x0,x17,x0,0x0059
+19,0x004c,"beq x10,x0,target",x0,x10,x0,0x0073
+20,0x0050,"addi x29,x24,34",x29,x24,x0,-
+21,0x0054,"bne x14,x0,target",x0,x14,x0,0x0085
+22,0x0058,"bge x3,x0,target",x0,x3,x0,0x007d
+23,0x005c,"add x20,x25,x17",x20,x25,x17,-
+24,0x0060,"xori x20,x13,63",x20,x13,x0,-
+25,0x0064,"slli x29,x9,33",x29,x9,x0,-
+26,0x0068,"addi x15,x16,54",x15,x16,x0,-
+27,0x006c,"beq x25,x0,target",x0,x25,x0,0x00a2
+28,0x0070,"xori x8,x31,11",x8,x31,x0,-
+29,0x0074,"bge x3,x0,target",x0,x3,x0,0x008a
+30,0x0078,"addi x10,x27,8",x10,x27,x0,-
+31,0x007c,"slli x24,x29,32",x24,x29,x0,-
+32,0x0080,"sw x0,14(x0)",x0,x0,x0,0x008e
+33,0x0084,"bne x17,x0,target",x0,x17,x0,0x00b7
+34,0x0088,"sub x18,x27,x10",x18,x27,x10,-
+35,0x008c,"add x16,x11,x6",x16,x11,x6,-
+36,0x0090,"bne x12,x0,target",x0,x12,x0,0x00ab
+37,0x0094,"andi x10,x0,41",x10,x0,x0,-
+38,0x0098,"lw x0,14(x1)",x0,x1,x0,0x00a6
+39,0x009c,"andi x19,x15,7",x19,x15,x0,-
+40,0x00a0,"xori x5,x5,62",x5,x5,x0,-
+41,0x00a4,"sub x8,x8,x30",x8,x8,x30,-
+42,0x00a8,"ori x27,x13,25",x27,x13,x0,-
+43,0x00ac,"blt x19,x0,target",x0,x19,x0,0x00e7
+44,0x00b0,"bne x23,x0,target",x0,x23,x0,0x00f0
+45,0x00b4,"sw x0,15(x28)",x0,x28,x0,0x00c3
+46,0x00b8,"xori x14,x4,43",x14,x4,x0,-
+47,0x00bc,"add x14,x14,x0",x14,x14,x0,-
+48,0x00c0,"blt x3,x0,target",x0,x3,x0,0x00e5
+49,0x00c4,"sub x2,x21,x4",x2,x21,x4,-
+50,0x00c8,"ori x31,x13,16",x31,x13,x0,-
+51,0x00cc,"blt x30,x0,target",x0,x30,x0,0x00f3
+52,0x00d0,"bge x30,x0,target",x0,x30,x0,0x010c
+53,0x00d4,"xori x6,x6,55",x6,x6,x0,-
+54,0x00d8,"andi x27,x26,59",x27,x26,x0,-
+55,0x00dc,"blt x3,x0,target",x0,x3,x0,0x00f0
+56,0x00e0,"add x25,x21,x6",x25,x21,x6,-
+57,0x00e4,"xori x12,x28,17",x12,x28,x0,-
+58,0x00e8,"slli x11,x17,59",x11,x17,x0,-
+59,0x00ec,"xori x4,x28,12",x4,x28,x0,-
+60,0x00f0,"add x0,x5,x15",x0,x5,x15,-
+61,0x00f4,"slli x31,x30,27",x31,x30,x0,-
+62,0x00f8,"slli x3,x10,48",x3,x10,x0,-
+63,0x00fc,"add x24,x16,x29",x24,x16,x29,-
+64,0x0100,"slli x31,x9,24",x31,x9,x0,-
+65,0x0104,"ori x13,x3,7",x13,x3,x0,-
+66,0x0108,"blt x20,x0,target",x0,x20,x0,0x0117
+67,0x010c,"add x30,x10,x3",x30,x10,x3,-
+68,0x0110,"addi x4,x4,30",x4,x4,x0,-
+69,0x0114,"slli x7,x15,5",x7,x15,x0,-
+70,0x0118,"beq x5,x0,target",x0,x5,x0,0x0155
+71,0x011c,"bne x20,x0,target",x0,x20,x0,0x0145
+72,0x0120,"xori x20,x15,33",x20,x15,x0,-
+73,0x0124,"slli x8,x19,58",x8,x19,x0,-
+74,0x0128,"andi x4,x0,58",x4,x0,x0,-
+75,0x012c,"beq x6,x0,target",x0,x6,x0,0x013d
+76,0x0130,"sw x0,33(x13)",x0,x13,x0,0x0151
+77,0x0134,"addi x22,x4,31",x22,x4,x0,-
+78,0x0138,"andi x18,x10,56",x18,x10,x0,-
+79,0x013c,"sw x0,1(x19)",x0,x19,x0,0x013d
+80,0x0140,"bne x19,x0,target",x0,x19,x0,0x0155
+81,0x0144,"addi x16,x7,13",x16,x7,x0,-
+82,0x0148,"blt x9,x0,target",x0,x9,x0,0x0172
+83,0x014c,"ori x13,x21,26",x13,x21,x0,-
+84,0x0150,"bne x16,x0,target",x0,x16,x0,0x0196
+85,0x0154,"ori x3,x5,54",x3,x5,x0,-
+86,0x0158,"ori x2,x0,42",x2,x0,x0,-
+87,0x015c,"bge x8,x0,target",x0,x8,x0,0x0185
+88,0x0160,"addi x28,x27,1",x28,x27,x0,-
+89,0x0164,"sub x4,x9,x2",x4,x9,x2,-
+90,0x0168,"beq x9,x0,target",x0,x9,x0,0x01a7
+91,0x016c,"addi x2,x19,46",x2,x19,x0,-
+92,0x0170,"bge x2,x0,target",x0,x2,x0,0x01a5
+93,0x0174,"xori x15,x6,45",x15,x6,x0,-
+94,0x0178,"bge x26,x0,target",x0,x26,x0,0x0193
+95,0x017c,"xori x10,x11,52",x10,x11,x0,-
+96,0x0180,"add x11,x21,x26",x11,x21,x26,-
+97,0x0184,"ori x10,x6,48",x10,x6,x0,-
+98,0x0188,"add x30,x14,x12",x30,x14,x12,-
+99,0x018c,"andi x19,x14,28",x19,x14,x0,-

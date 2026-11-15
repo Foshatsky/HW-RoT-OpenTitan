@@ -1,0 +1,62 @@
+/home/cdcat/docs/study/RISC-V/verification/experiments/formal_spec/model_checker.py:1: SyntaxWarning: invalid escape sequence '\ '
+  """
+============================================================
+TLA+-STYLE MODEL CHECKING: ARBITER
+============================================================
+
+Specification:
+  Variables: req[1..3], gnt, state
+  Actions: Grant(i), Release
+  Safety: mutex (one grant at a time)
+  Liveness: every request eventually granted
+
+Initial states: 8
+  State(req=(0, 0, 0, 0), gnt=0, state=idle)
+  State(req=(0, 0, 0, 1), gnt=0, state=idle)
+  State(req=(0, 0, 1, 0), gnt=0, state=idle)
+  State(req=(0, 0, 1, 1), gnt=0, state=idle)
+  State(req=(0, 1, 0, 0), gnt=0, state=idle)
+  State(req=(0, 1, 0, 1), gnt=0, state=idle)
+  State(req=(0, 1, 1, 0), gnt=0, state=idle)
+  State(req=(0, 1, 1, 1), gnt=0, state=idle)
+
+Reachable states: 20
+  State(req=(0, 0, 0, 0), gnt=0, state=idle)
+  State(req=(0, 0, 0, 1), gnt=0, state=idle)
+  State(req=(0, 0, 0, 1), gnt=3, state=granted)
+  State(req=(0, 0, 1, 0), gnt=0, state=idle)
+  State(req=(0, 0, 1, 0), gnt=2, state=granted)
+  State(req=(0, 0, 1, 1), gnt=0, state=idle)
+  State(req=(0, 0, 1, 1), gnt=2, state=granted)
+  State(req=(0, 0, 1, 1), gnt=3, state=granted)
+  State(req=(0, 1, 0, 0), gnt=0, state=idle)
+  State(req=(0, 1, 0, 0), gnt=1, state=granted)
+  State(req=(0, 1, 0, 1), gnt=0, state=idle)
+  State(req=(0, 1, 0, 1), gnt=1, state=granted)
+  State(req=(0, 1, 0, 1), gnt=3, state=granted)
+  State(req=(0, 1, 1, 0), gnt=0, state=idle)
+  State(req=(0, 1, 1, 0), gnt=1, state=granted)
+  State(req=(0, 1, 1, 0), gnt=2, state=granted)
+  State(req=(0, 1, 1, 1), gnt=0, state=idle)
+  State(req=(0, 1, 1, 1), gnt=1, state=granted)
+  State(req=(0, 1, 1, 1), gnt=2, state=granted)
+  State(req=(0, 1, 1, 1), gnt=3, state=granted)
+
+--- Safety check: MutexProp ---
+  Result: PASS (no violations)
+
+--- Liveness check: starvation freedom ---
+  Client 1: no starvation (every request can be granted)
+  Client 2: no starvation (every request can be granted)
+  Client 3: no starvation (every request can be granted)
+  Result: PASS
+
+--- Sample execution trace ---
+  Step 0: State(req=(0, 1, 0, 0), gnt=0, state=idle)
+  Step 1: State(req=(0, 1, 0, 0), gnt=1, state=granted)
+  Step 2: State(req=(0, 0, 0, 0), gnt=0, state=idle)
+
+============================================================
+CONCLUSION: Specification is SAFE and starvation-free
+(for up to 1 pending requests per client)
+============================================================

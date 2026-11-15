@@ -1,0 +1,39 @@
+Z3 version: 4.16.0
+
+proved
+counterexample
+[b = 32766, a = 4294950912]
+--- Proving fundamental adder property ---
+Property: (a + b) - a == b   (mod 2^32)
+proved
+
+--- Proving commutativity ---
+proved
+
+--- Proving associativity ---
+proved
+
+All adder properties verified symbolically for ALL 32-bit inputs!
+============================================================
+Verifying integer division: q = a // b, r = a % b
+Property: a == b * q + r  AND  0 <= r < b
+============================================================
+
+Division relation is SATISFIABLE (i.e., there exist values): sat
+  Example: a=0, b=8, q=0, r=0
+  Check: 0 == 8 * 0 + 0
+
+--- Proving Euclidean division theorem ---
+For all a>=0, b>0: exists unique q,r such that a = b*q + r, 0<=r<b
+  Example: a=100, b=7 => q=14, r=2
+  Check: 100 == 7 * 14 + 2 => True
+
+============================================================
+Verifying RISC-V instruction decoding (subset)
+Property: opcode and funct3 uniquely determine instruction type
+============================================================
+Proving ADD and SUB are mutually exclusive...
+proved
+Proving ADD and AND are mutually exclusive...
+proved
+All decoding properties verified!

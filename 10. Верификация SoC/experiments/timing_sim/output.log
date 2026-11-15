@@ -1,0 +1,8 @@
+VCD info: dumpfile test_timing.vcd opened for output.
+Time=0  a=0  b=0  sum= x
+Time=6000  a=0  b=0  sum= 0 (expected 0)
+Time=12000  a=5  b=3  sum= 8 (expected 8)
+Time=18000  a=9  b=7  sum=16 (expected 16)
+Time=19000  a=2  b=4  sum=16 (expected 6 before delay)
+Time=24000  a=2  b=4  sum= 6 (expected 6 after delay)
+tb_delays.v:32: $finish called at 24000 (1ps)

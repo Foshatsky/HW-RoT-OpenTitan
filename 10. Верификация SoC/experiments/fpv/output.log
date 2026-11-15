@@ -1,0 +1,457 @@
+
+--- Proving assertions in fsm_props.v (fsm_props) ---
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.50 (git sha1 b5170e139, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+
+-- Running command `
+        read_verilog -formal fsm_props.v
+        hierarchy -top fsm_props
+        proc; opt; async2sync
+        sat -prove-asserts -verify -tempinduct -seq 2 fsm_props
+    ' --
+
+1. Executing Verilog-2005 frontend: fsm_props.v
+Parsing formal Verilog input from `fsm_props.v' to AST representation.
+Generating RTLIL representation for module `\fsm_props'.
+Warning: reg '\done' is assigned in a continuous assignment at fsm_props.v:44.10-44.32.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \fsm_props
+
+2.2. Analyzing design hierarchy..
+Top module:  \fsm_props
+Removed 0 unused modules.
+Module fsm_props directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$fsm_props.v:24$3 in module fsm_props.
+Marked 1 switch rules as full_case in process $proc$fsm_props.v:14$1 in module fsm_props.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~3 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\fsm_props.$proc$fsm_props.v:24$3'.
+     1/5: $0\was_error[0:0]
+     2/5: $0\state[1:0]
+     3/5: $assert$fsm_props.v:40$9_EN
+     4/5: $assert$fsm_props.v:37$7_EN
+     5/5: $assert$fsm_props.v:33$5_EN
+Creating decoders for process `\fsm_props.$proc$fsm_props.v:14$1'.
+     1/1: $1\next_state[1:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\fsm_props.\next_state' from process `\fsm_props.$proc$fsm_props.v:14$1'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\fsm_props.\state' using process `\fsm_props.$proc$fsm_props.v:24$3'.
+  created $dff cell `$procdff$38' with positive edge clock.
+Creating register for signal `\fsm_props.\was_error' using process `\fsm_props.$proc$fsm_props.v:24$3'.
+  created $dff cell `$procdff$39' with positive edge clock.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\fsm_props.$proc$fsm_props.v:24$3'.
+Removing empty process `fsm_props.$proc$fsm_props.v:24$3'.
+Found and cleaned up 1 empty switch in `\fsm_props.$proc$fsm_props.v:14$1'.
+Removing empty process `fsm_props.$proc$fsm_props.v:14$1'.
+Cleaned up 3 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fsm_props.
+<suppressed ~4 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fsm_props.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fsm_props'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fsm_props..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fsm_props.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fsm_props'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$38 ($dff) from module fsm_props (D = \next_state, Q = \state, rval = 2'00).
+Adding SRST signal on $procdff$39 ($dff) from module fsm_props (D = $eq$fsm_props.v:30$4_Y, Q = \was_error, rval = 1'0).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fsm_props..
+Removed 2 unused cells and 20 unused wires.
+<suppressed ~3 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fsm_props.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fsm_props..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fsm_props.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fsm_props'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fsm_props..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fsm_props.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing ASYNC2SYNC pass.
+
+6. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+Import set-constraint from init attribute: $auto$async2sync.cc:110:execute$58 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:101:execute$54 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:110:execute$52 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:101:execute$48 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:110:execute$46 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:101:execute$42 = 1'0
+Final init constraint equation: { $auto$async2sync.cc:101:execute$42 $auto$async2sync.cc:110:execute$46 $auto$async2sync.cc:101:execute$48 $auto$async2sync.cc:110:execute$52 $auto$async2sync.cc:101:execute$54 $auto$async2sync.cc:110:execute$58 } = 6'010101
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$58 when $auto$async2sync.cc:101:execute$54.
+Import proof for assert: $auto$async2sync.cc:110:execute$52 when $auto$async2sync.cc:101:execute$48.
+Import proof for assert: $auto$async2sync.cc:110:execute$46 when $auto$async2sync.cc:101:execute$42.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$58 when $auto$async2sync.cc:101:execute$54.
+Import proof for assert: $auto$async2sync.cc:110:execute$52 when $auto$async2sync.cc:101:execute$48.
+Import proof for assert: $auto$async2sync.cc:110:execute$46 when $auto$async2sync.cc:101:execute$42.
+
+[base case 1] Solving problem with 521 variables and 1361 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$58 when $auto$async2sync.cc:101:execute$54.
+Import proof for assert: $auto$async2sync.cc:110:execute$52 when $auto$async2sync.cc:101:execute$48.
+Import proof for assert: $auto$async2sync.cc:110:execute$46 when $auto$async2sync.cc:101:execute$42.
+
+[induction step 1] Solving problem with 332 variables and 855 clauses..
+Induction step failed. Incrementing induction length.
+
+  Time Signal Name                                     Dec       Hex           Bin
+  ---- --------------------------------------- ----------- --------- -------------
+  init $auto$async2sync.cc:101:execute$42                0         0             0
+  init $auto$async2sync.cc:101:execute$48                0         0             0
+  init $auto$async2sync.cc:101:execute$54                0         0             0
+  init $auto$async2sync.cc:110:execute$46                1         1             1
+  init $auto$async2sync.cc:110:execute$52                1         1             1
+  init $auto$async2sync.cc:110:execute$58                0         0             0
+  init \state                                            3         3            11
+  init \was_error                                        0         0             0
+
+** Trying induction with length 2 **
+
+Setting up time step 4:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$58 when $auto$async2sync.cc:101:execute$54.
+Import proof for assert: $auto$async2sync.cc:110:execute$52 when $auto$async2sync.cc:101:execute$48.
+Import proof for assert: $auto$async2sync.cc:110:execute$46 when $auto$async2sync.cc:101:execute$42.
+
+[base case 2] Solving problem with 733 variables and 1943 clauses..
+Base case for induction length 2 proven.
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 34 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$58 when $auto$async2sync.cc:101:execute$54.
+Import proof for assert: $auto$async2sync.cc:110:execute$52 when $auto$async2sync.cc:101:execute$48.
+Import proof for assert: $auto$async2sync.cc:110:execute$46 when $auto$async2sync.cc:101:execute$42.
+
+[induction step 2] Solving problem with 572 variables and 1529 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: 012223474f, CPU: user 0.02s system 0.00s, MEM: 18.51 MB peak
+Yosys 0.50 (git sha1 b5170e139, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+Time spent: 41% 1x sat (0 sec), 22% 4x opt_expr (0 sec), ...
+
+--- Proving assertions in safe_counter.v (safe_counter) ---
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.50 (git sha1 b5170e139, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+
+-- Running command `
+        read_verilog -formal safe_counter.v
+        hierarchy -top safe_counter
+        proc; opt; async2sync
+        sat -prove-asserts -verify -tempinduct -seq 2 safe_counter
+    ' --
+
+1. Executing Verilog-2005 frontend: safe_counter.v
+Parsing formal Verilog input from `safe_counter.v' to AST representation.
+Generating RTLIL representation for module `\safe_counter'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \safe_counter
+
+2.2. Analyzing design hierarchy..
+Top module:  \safe_counter
+Removed 0 unused modules.
+Module safe_counter directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$safe_counter.v:12$4 in module safe_counter.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~4 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\safe_counter.$proc$safe_counter.v:12$4'.
+     1/4: $assert$safe_counter.v:28$12_EN
+     2/4: $assert$safe_counter.v:25$10_EN
+     3/4: $assert$safe_counter.v:21$7_EN
+     4/4: $0\count[1:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\safe_counter.\count' using process `\safe_counter.$proc$safe_counter.v:12$4'.
+  created $dff cell `$procdff$32' with positive edge clock.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `\safe_counter.$proc$safe_counter.v:12$4'.
+Removing empty process `safe_counter.$proc$safe_counter.v:12$4'.
+Cleaned up 4 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module safe_counter.
+<suppressed ~1 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module safe_counter.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\safe_counter'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \safe_counter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \safe_counter.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\safe_counter'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$32 ($dff) from module safe_counter (D = $procmux$27_Y, Q = \count, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$33 ($sdff) from module safe_counter (D = $ternary$safe_counter.v:9$3_Y, Q = \count).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \safe_counter..
+Removed 2 unused cells and 16 unused wires.
+<suppressed ~3 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module safe_counter.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \safe_counter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \safe_counter.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\safe_counter'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \safe_counter..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module safe_counter.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing ASYNC2SYNC pass.
+
+6. Executing SAT pass (solving SAT problems in the circuit).
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 32 cells to SAT database.
+Import set-constraint from init attribute: $auto$async2sync.cc:110:execute$51 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:101:execute$47 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:110:execute$45 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:101:execute$41 = 1'0
+Import set-constraint from init attribute: $auto$async2sync.cc:110:execute$39 = 1'1
+Import set-constraint from init attribute: $auto$async2sync.cc:101:execute$35 = 1'0
+Final init constraint equation: { $auto$async2sync.cc:101:execute$35 $auto$async2sync.cc:110:execute$39 $auto$async2sync.cc:101:execute$41 $auto$async2sync.cc:110:execute$45 $auto$async2sync.cc:101:execute$47 $auto$async2sync.cc:110:execute$51 } = 6'010101
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 32 cells to SAT database.
+
+Setting up time step 1:
+Final constraint equation: { } = { }
+Imported 32 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$51 when $auto$async2sync.cc:101:execute$47.
+Import proof for assert: $auto$async2sync.cc:110:execute$45 when $auto$async2sync.cc:101:execute$41.
+Import proof for assert: $auto$async2sync.cc:110:execute$39 when $auto$async2sync.cc:101:execute$35.
+
+** Trying induction with length 1 **
+
+Setting up time step 3:
+Final constraint equation: { } = { }
+Imported 32 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$51 when $auto$async2sync.cc:101:execute$47.
+Import proof for assert: $auto$async2sync.cc:110:execute$45 when $auto$async2sync.cc:101:execute$41.
+Import proof for assert: $auto$async2sync.cc:110:execute$39 when $auto$async2sync.cc:101:execute$35.
+
+[base case 1] Solving problem with 501 variables and 1314 clauses..
+Base case for induction length 1 proven.
+
+Setting up time step 2:
+Final constraint equation: { } = { }
+Imported 32 cells to SAT database.
+Import proof for assert: $auto$async2sync.cc:110:execute$51 when $auto$async2sync.cc:101:execute$47.
+Import proof for assert: $auto$async2sync.cc:110:execute$45 when $auto$async2sync.cc:101:execute$41.
+Import proof for assert: $auto$async2sync.cc:110:execute$39 when $auto$async2sync.cc:101:execute$35.
+
+[induction step 1] Solving problem with 318 variables and 822 clauses..
+Induction step proven: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+
+End of script. Logfile hash: f7e69d0f7c, CPU: user 0.02s system 0.01s, MEM: 18.01 MB peak
+Yosys 0.50 (git sha1 b5170e139, g++ 13.3.0-6ubuntu2~24.04.1 -fPIC -O3)
+Time spent: 31% 4x opt_expr (0 sec), 20% 1x sat (0 sec), ...
+
+========================================
+  Experiment complete. See output.log for details.
+========================================

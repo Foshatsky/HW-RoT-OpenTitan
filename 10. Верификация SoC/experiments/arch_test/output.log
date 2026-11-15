@@ -1,0 +1,68 @@
+core   0: 0x0000000000001000 (0x00000297) auipc   t0, 0x0
+core   0: 0x0000000000001004 (0x02028593) addi    a1, t0, 32
+core   0: 0x0000000000001008 (0xf1402573) csrr    a0, mhartid
+core   0: 0x000000000000100c (0x0182b283) ld      t0, 24(t0)
+core   0: 0x0000000000001010 (0x00028067) jr      t0
+core   0: >>>>  $xrv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0_zifencei2p0_zmmul1p0
+core   0: 0x0000000080000144 (0x00004285) c.li    t0, 1
+core   0: 0x0000000080000146 (0x00004301) c.li    t1, 0
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: >>>>  loop
+core   0: 0x0000000080000148 (0x00009316) c.add   t1, t0
+core   0: 0x000000008000014a (0x00000285) c.addi  t0, 1
+core   0: 0x000000008000014c (0x000043ad) c.li    t2, 11
+core   0: 0x000000008000014e (0xfe72cde3) blt     t0, t2, pc - 6
+core   0: 0x0000000080000152 (0x0000851a) c.mv    a0, t1
+core   0: 0x0000000080000154 (0x00001397) auipc   t2, 0x1
+core   0: 0x0000000080000158 (0x01438393) addi    t2, t2, 20
+core   0: 0x000000008000015c (0x00000306) c.slli  t1, 1
+core   0: 0x000000008000015e (0x00000305) c.addi  t1, 1
+core   0: 0x0000000080000160 (0x0063b023) sd      t1, 0(t2)
+core   0: 0x0000000080000164 (0x00009002) c.ebreak
+core   0: exception trap_breakpoint, epc 0x0000000080000164
+core   0:           tval 0x0000000080000164
+*** FAILED *** (tohost = 55)

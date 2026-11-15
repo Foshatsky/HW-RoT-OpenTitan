@@ -1,0 +1,14 @@
+Fuzzing tiny_alu — 500 random test cases
+
+MISMATCH #1  a=06 b=06 op=1  DUT: result=00 carry=1  REF: result=00 carry=0
+MISMATCH #2  a=0b b=0b op=1  DUT: result=00 carry=1  REF: result=00 carry=0
+  100 / 500  (2 mismatches so far)
+  200 / 500  (2 mismatches so far)
+MISMATCH #3  a=00 b=00 op=1  DUT: result=00 carry=1  REF: result=00 carry=0
+  300 / 500  (3 mismatches so far)
+MISMATCH #4  a=0d b=0d op=1  DUT: result=00 carry=1  REF: result=00 carry=0
+  400 / 500  (4 mismatches so far)
+  500 / 500  (4 mismatches so far)
+
+--- Fuzzing complete ---
+4 MISMATCH(ES) found out of 500 tests.
