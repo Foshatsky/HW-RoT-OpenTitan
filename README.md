@@ -1,2 +1,9 @@
-# HW-RoT-OpenTitan
-Материалы курса по Hardware Root of Trust: OpenTitan (Verilator/Earl Grey) и работа с ОС Zephyr и FreeRTOS
+# HW-RoT-OpenTitan — предвитрина Zephyr (`dev-z`)
+
+Черновик трека **Zephyr** на OpenTitan. Сюда мержатся рабочие ветки от `dev-z`; в витрину (`master`) — когда трек готов.
+
+## Структура
+
+| Путь | Содержание |
+|------|------------|
+| [`zephyr/`](zephyr/) | Материалы трека Zephyr |
