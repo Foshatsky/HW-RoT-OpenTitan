@@ -1,2 +1,10 @@
-# HW-RoT-OpenTitan
-Материалы курса по Hardware Root of Trust: OpenTitan (Verilator/Earl Grey) и работа с ОС Zephyr и FreeRTOS
+# HW-RoT-OpenTitan — предвитрина FreeRTOS (`dev-f`)
+
+Черновик трека **FreeRTOS** на OpenTitan. Сюда мержатся рабочие ветки от `dev-f`; в витрину (`master`) — когда трек готов.
+
+## Структура
+
+| Путь | Содержание |
+|------|------------|
+| [`theory/`](theory/) | Теория: книги и конспекты |
+| [`freertos/`](freertos/) | Материалы трека FreeRTOS |
